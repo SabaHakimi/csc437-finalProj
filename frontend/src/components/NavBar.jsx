@@ -15,8 +15,9 @@ export default function NavBar({ user, onLogout, darkMode, onToggleDarkMode }) {
               <NavLink to="/" end>Inventory</NavLink>
               <NavLink to="/recipes">Recipes</NavLink>
               <NavLink to="/add">Add Item</NavLink>
-              <button className="nav-link" onClick={onLogout}>
-                Log out
+              <button type="button" className="nav-link logout-combo" onClick={onLogout} title="Log out">
+                <span className="logout-combo-default">Hi, {user.username}!</span>
+                <span className="logout-combo-hover">Log out</span>
               </button>
             </>
           ) : (

@@ -1,6 +1,6 @@
 import ItemCard from "../components/ItemCard";
 
-export default function InventoryPage({ user, items, onMarkUsed }) {
+export default function InventoryPage({ user, items, onUseItem }) {
   const fridgeItems = items.filter((i) => i.location === "Fridge");
   const pantryItems = items.filter((i) => i.location === "Pantry");
 
@@ -8,7 +8,7 @@ export default function InventoryPage({ user, items, onMarkUsed }) {
     <main>
       <h1>Inventory</h1>
       <p className="user-info">
-        Logged in as <strong>{user.name}</strong>
+        Logged in as <strong>{user.username}</strong>
       </p>
 
       <section className="section" aria-labelledby="fridge-heading">
@@ -18,7 +18,7 @@ export default function InventoryPage({ user, items, onMarkUsed }) {
         ) : (
           <div className="card-grid">
             {fridgeItems.map((item) => (
-              <ItemCard key={item.id} item={item} onMarkUsed={onMarkUsed} />
+              <ItemCard key={item.id} item={item} onUse={onUseItem} />
             ))}
           </div>
         )}
@@ -31,7 +31,7 @@ export default function InventoryPage({ user, items, onMarkUsed }) {
         ) : (
           <div className="card-grid">
             {pantryItems.map((item) => (
-              <ItemCard key={item.id} item={item} onMarkUsed={onMarkUsed} />
+              <ItemCard key={item.id} item={item} onUse={onUseItem} />
             ))}
           </div>
         )}

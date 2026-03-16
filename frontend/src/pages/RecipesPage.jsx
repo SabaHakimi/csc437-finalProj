@@ -1,19 +1,19 @@
+import { Link } from "react-router-dom";
 import RecipeCard from "../components/RecipeCard";
+import { canCookRecipe } from "../utils/recipeIngredients";
 
 export default function RecipesPage({ items, recipes, onCookRecipe }) {
-  const availableItems = items.filter((i) => !i.used);
+  const recipeCanCook = (recipe) => canCookRecipe(recipe, items);
 
-  const canCookRecipe = (recipe) =>
-    recipe.ingredients.every((ing) =>
-      availableItems.some((item) => item.name.toLowerCase() === ing.toLowerCase())
-    );
-
-  const available = recipes.filter(canCookRecipe);
-  const unavailable = recipes.filter((r) => !canCookRecipe(r));
+  const available = recipes.filter(recipeCanCook);
+  const unavailable = recipes.filter((r) => !recipeCanCook(r));
 
   return (
     <main>
-      <h1>Recipes</h1>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
+        <h1 style={{ margin: 0 }}>Recipes</h1>
+        <Link to="/recipes/add" className="btn">Add recipe</Link>
+      </div>
 
       <section className="section" aria-labelledby="available-heading">
         <h2 id="available-heading">Available With Current Inventory</h2>
