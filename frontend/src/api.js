@@ -1,4 +1,5 @@
-const API_URL = "http://localhost:3000/api";
+// Use relative URL so it works on VPS (same origin) and in dev with Vite proxy
+const API_URL = "/api";
 
 const getHeaders = () => {
   const token = localStorage.getItem("token");
